@@ -25,19 +25,34 @@ type Product = {
 const App: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [limit, setLimit] = useState<number>(10);
+  const [limit, setLimit] = useState<number>(5);
+  const [category, setCategory] = useState<string>("All");
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products?limit=${limit}`)
-      .then(res=>res.json())
-      .then(json=> {
-        setProducts(json);
-        setLoading(false);
-      });
-  }, [limit]);
+    if (category === "All") {
+      fetch(`https://fakestoreapi.com/products?limit=${limit}`)
+        .then(res=>res.json())
+        .then(json=> {
+          setProducts(json);
+          setLoading(false);
+        });
+    }
+    else {
+      fetch(`https://fakestoreapi.com/products/category/${category}`)
+        .then(res=>res.json())
+        .then(json=> {
+          setProducts(json);
+          setLoading(false);
+        });
+    }
+  }, [limit, category]);
 
   const handleLimitChange = (value: number) => {
     setLimit(value);
+  };
+
+  const handleCategoryChange = (value: number) => {
+    setCategory(value);
   };
 
   return (
@@ -50,9 +65,16 @@ const App: React.FC = () => {
         ) : (
           <FlatList
             data={products}
-            renderItem={({ item }) => <ProductItem item={item} />}
+            renderItem={({item}) => <ProductItem item={item} />}
             keyExtractor={(item) => item.id.toString()}
-            ListHeaderComponent={() => <HeadingList limit={limit} onLimitChange={handleLimitChange} />}
+            ListHeaderComponent={() => (
+              <HeadingList 
+                limit={limit} 
+                onLimitChange={handleLimitChange}
+                category={category}
+                onCategoryChange={handleCategoryChange} 
+              />
+            )}
           />
         )}
       </View>
