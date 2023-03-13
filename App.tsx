@@ -6,9 +6,7 @@ import {
   Button,
   View,
   Text,
-  FlatList,
-  Center,
-  Spinner
+  FlatList
 } from "native-base";
 import ProductItem from "./src/components/ProductItem";
 import HeadingList from "./src/components/HeadingList"
@@ -25,12 +23,12 @@ type Product = {
 const App: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [limit, setLimit] = useState<number>(5);
   const [category, setCategory] = useState<string>("All");
 
   useEffect(() => {
+    setLoading(true);
     if (category === "All") {
-      fetch(`https://fakestoreapi.com/products?limit=${limit}`)
+      fetch(`https://fakestoreapi.com/products`)
         .then(res=>res.json())
         .then(json=> {
           setProducts(json);
@@ -45,38 +43,28 @@ const App: React.FC = () => {
           setLoading(false);
         });
     }
-  }, [limit, category]);
-
-  const handleLimitChange = (value: number) => {
-    setLimit(value);
-  };
+  }, [category]);
 
   const handleCategoryChange = (value: number) => {
     setCategory(value);
+    setLoading(false);
   };
 
   return (
     <NativeBaseProvider>
       <View bg="coolGray.200">
-        {loading ? (
-          <Center>
-            <Spinner/>
-          </Center>
-        ) : (
-          <FlatList
-            data={products}
-            renderItem={({item}) => <ProductItem item={item} />}
-            keyExtractor={(item) => item.id.toString()}
-            ListHeaderComponent={() => (
-              <HeadingList 
-                limit={limit} 
-                onLimitChange={handleLimitChange}
-                category={category}
-                onCategoryChange={handleCategoryChange} 
-              />
-            )}
-          />
-        )}
+        <FlatList
+          data={products}
+          renderItem={({item}) => <ProductItem item={item} loading={loading} />}
+          keyExtractor={(item) => item.id.toString()}
+          ListHeaderComponent={() => (
+            <HeadingList
+              category={category}
+              onCategoryChange={handleCategoryChange}
+              setLoading={setLoading}
+            />
+          )}
+        />
       </View>
     </NativeBaseProvider>
   );
