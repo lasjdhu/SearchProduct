@@ -11,4 +11,4 @@ $ npm i
 $ npm start metro
 [PRESS "a" for Android]
 ```
-+ link
++ Using Expo scan this QR: https://expo.dev/@re-roll/searchproduct
