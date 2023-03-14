@@ -2,12 +2,12 @@ import React from "react";
 import { 
 	View,
 	Heading, 
-	Select,
-	Item,
+	Box,
 	Text,
-	Box
+	Select
 } from "native-base";
 
+// Type definition for TypeScript
 type Props = {
   category: string;
   onCategoryChange: (value: string) => void;
