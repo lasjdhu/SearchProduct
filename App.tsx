@@ -6,7 +6,10 @@ import {
   Button,
   View,
   Text,
-  FlatList
+  FlatList,
+  HStack,
+  Center,
+  Spinner
 } from "native-base";
 import ProductItem from "./src/components/ProductItem";
 import HeadingList from "./src/components/HeadingList"
@@ -53,6 +56,11 @@ const App: React.FC = () => {
   return (
     <NativeBaseProvider>
       <View bg="coolGray.200">
+      {loading ? (
+        <HStack height="100%" space={2} justifyContent="center">
+            <Spinner size="lg" accessibilityLabel="Loading products" />
+        </HStack>
+      ) : (
         <FlatList
           data={products}
           renderItem={({item}) => <ProductItem item={item} loading={loading} />}
@@ -65,6 +73,7 @@ const App: React.FC = () => {
             />
           )}
         />
+      )}
       </View>
     </NativeBaseProvider>
   );
