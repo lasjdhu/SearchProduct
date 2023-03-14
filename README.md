@@ -7,6 +7,7 @@
 ```
 $ git clone git@github.com:re-roll/SearchProduct.git
 $ cd SearchProduct
+$ npm i
 $ npm start metro
 [PRESS "a" for Android]
 ```
