@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { 
 	Card,
+  Image,
   Box,
   Heading,
-  Image,
   Text,
   Button,
   Collapse
 } from "native-base";
 
+// Type definition for TypeScript
 type itemProps = {
   item: {
     id: number;
@@ -18,11 +19,10 @@ type itemProps = {
     image: string;
     price: number;
   };
-  loading: boolean;
 };
 
-const ProductItem: React.FC = ({ item, loading }: itemProps) => {
-  const [showDescription, setShowDescription] = useState(false);
+const ProductItem: React.FC = ({ item }: itemProps) => {
+  const [showDescription, setShowDescription] = useState<boolean>(false);
 
   const handleToggleDescription = () => {
     setShowDescription(!showDescription);
@@ -37,7 +37,7 @@ const ProductItem: React.FC = ({ item, loading }: itemProps) => {
 	      alignItems="center"
 	      justifyContent="space-between"
 	      my="4"
-	      mx="2"
+	      mx="4"
 	    >
 	      <Image
 	        source={{ uri: item.image }}
@@ -61,7 +61,17 @@ const ProductItem: React.FC = ({ item, loading }: itemProps) => {
 	    </Card>
 	    <Collapse isOpen={showDescription} m="5" my="2">
 	    	<Text fontSize="xl">Description:</Text>
-	    	<Box>{item.category}</Box>
+	    	<Box 
+	    		flex="1"
+	    		width="140"
+	    		height="6"
+	    		alignItems="center"
+	    		rounded="lg"
+	    		bgColor="yellow.600"
+	    		my="3"
+	    	>
+	    		{item.category}
+	    	</Box>
 	      <Text color="coolGray.600">{item.description}</Text>
 	    </Collapse>
 	  </>
