@@ -14,5 +14,5 @@ $ npm start metro
 + Using Expo scan this QR: https://expo.dev/@re-roll/searchproduct
 
 ## App:
-![dark](assets/dark.jpg) 
-![light](assets/light.jpg) 
+<img src="assets/light.jpg" alt="Light mode" width="45%" height="50%" title="Light mode" /> <img src="assets/dark.jpg" alt="Dark mode" width="45%" height="50%" title="Dark mode" />
+
