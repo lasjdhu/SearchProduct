@@ -2,7 +2,7 @@
 
 ## March 2023
 
-### Usage:
+## Usage:
 + Virtual emulator or physical device connected
 ```
 $ git clone git@github.com:re-roll/SearchProduct.git
@@ -12,3 +12,7 @@ $ npm start metro
 [PRESS "a" for Android]
 ```
 + Using Expo scan this QR: https://expo.dev/@re-roll/searchproduct
+
+## App:
+![dark](assets/dark.jpg) 
+![light](assets/light.jpg) 
