@@ -1,14 +1,16 @@
-# SearchProduct mobile app (SDK46)
+# Technical interview task in React Native
 
 ## March 2023
 
 ## Usage
-+ Virtual emulator or physical device connected
+
+> **_NOTE:_** Virtual emulator or physical device should be connected
+
 ```sh
-npm i
-npm start metro
+npm install
+npm run start
 ```
 
-## App
-<img src="assets/light.jpg" alt="Light mode" width="45%" height="45%" title="Light mode" /> <img src="assets/dark.jpg" alt="Dark mode" width="45%" height="45%" title="Dark mode" />
+## Showcase
 
+<img src="assets/light.jpg" alt="Light mode" width="45%" height="45%" title="Light mode" /><img src="assets/dark.jpg" alt="Dark mode" width="45%" height="45%" title="Dark mode" />
